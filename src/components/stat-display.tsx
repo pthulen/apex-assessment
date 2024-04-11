@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { PokemonContext } from "../context/pokemon";
-import { Container, Flex, Text, Stack, Button } from "@chakra-ui/react";
+import { CapturedPokemon, PokemonContext } from "../context/pokemon";
+import { Container, Flex, Text, Stack, Button, Center } from "@chakra-ui/react";
 
 type PokemonData = {
   id: number;
@@ -22,7 +22,7 @@ type PokemonData = {
 };
 
 const StatDisplay = () => {
-  const { selectedPokemon } = useContext(PokemonContext);
+  const { selectedPokemon, setCapturedPokemon } = useContext(PokemonContext);
   const [pokemonData, setPokemonData] = useState<PokemonData | null>(null);
 
   //if selectedPokemon is true, then fetch the data
@@ -40,11 +40,24 @@ const StatDisplay = () => {
     console.log(pokemonData);
   }, [selectedPokemon]);
 
-  console.log("data: ", pokemonData);
+  // const handleCapture = () => {
+  //     if (pokemonData) {
+  //         const capturedPokemon: CapturedPokemon = {
+  //             name: selectedPokemon.name,
+  //             id: pokemonData.id,
+  //             sprites: pokemonData.sprites,
+  //         };
+  //         setCapturedPokemon((prev) => [...prev, capturedPokemon]);
+  //     }
+  // };
+
   if (!pokemonData) {
-    return <div>Loading...</div>; // Placeholder for loading state
+    return (
+      <Center>
+        <Text fontSize="2xl">No Pokemon Selected</Text>
+      </Center>
+    );
   }
-  console.log("data: after ify ", pokemonData);
   return (
     <div>
       <Flex>

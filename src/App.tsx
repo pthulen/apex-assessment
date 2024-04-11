@@ -1,30 +1,38 @@
-import { useContext } from "react";
-import { PokemonContext } from "./context/pokemon";
-import { Flex, Center, Container } from "@chakra-ui/react";
+import { Flex, Center, Container, Box, Text } from "@chakra-ui/react";
 import SearchBar from "./components/searchbar";
 import StatDisplay from "./components/stat-display";
 
 import "./App.css";
 
 function App() {
-  const { selectedPokemon } = useContext(PokemonContext);
-
   return (
-    <Container>
-      <Center
+    <Flex justify="center" mt={4}>
+      <Box
+        borderRadius="2xl"
         bg="#E53E3E"
-        w="100%"
         p={4}
-        color="white"
-        borderRadius="lg"
-        mt={4}
+        border="8px"
+        borderColor="#63171B"
+        h="500px"
       >
-        <SearchBar />
-      </Center>
-      <Center bg="#E53E3E" w="100%" p={4} color="white" borderRadius="lg">
-        <StatDisplay />
-      </Center>
-    </Container>
+        <Center>
+          <SearchBar />
+        </Center>
+        <Container color="white">
+          <StatDisplay />
+        </Container>
+      </Box>
+      <Box
+        w="20%"
+        h="500px"
+        bg="#E53E3E"
+        borderRadius="2xl"
+        border="8px"
+        borderColor="#63171B"
+      >
+        <Text>Captured</Text>
+      </Box>
+    </Flex>
   );
 }
 

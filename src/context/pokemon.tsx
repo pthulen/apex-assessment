@@ -6,11 +6,21 @@ export type PokemonItem = {
   url: string;
 };
 
+export type CapturedPokemon = {
+  name: string;
+  id: number;
+  sprites: {
+    front_default: string;
+  };
+};
+
 export const PokemonContext = createContext({
   pokemonList: [] as PokemonItem[],
   setPokemonList: (value: PokemonItem[]) => {},
   selectedPokemon: {} as PokemonItem,
   setSelectedPokemon: (value: PokemonItem) => {},
+  capturedPokemon: [] as CapturedPokemon[],
+  setCapturedPokemon: (value: CapturedPokemon[]) => {},
 });
 
 export const PokemonProvider = ({
@@ -22,12 +32,15 @@ export const PokemonProvider = ({
   const [selectedPokemon, setSelectedPokemon] = useState<PokemonItem>(
     {} as PokemonItem
   );
+  const [capturedPokemon, setCapturedPokemon] = useState<CapturedPokemon[]>([]);
 
   const value = {
     pokemonList,
     setPokemonList: (value: PokemonItem[]) => setPokemonList(value),
     selectedPokemon,
     setSelectedPokemon: (value: PokemonItem) => setSelectedPokemon(value),
+    capturedPokemon,
+    setCapturedPokemon: (value: CapturedPokemon[]) => setCapturedPokemon(value),
   };
 
   useEffect(() => {
