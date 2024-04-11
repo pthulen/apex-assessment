@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { PokemonProvider } from "./context/pokemon";
+import { ChakraProvider } from "@chakra-ui/react";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
@@ -10,9 +11,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <PokemonProvider>
-      <App />
-    </PokemonProvider>
+    <ChakraProvider>
+      <PokemonProvider>
+        <App />
+      </PokemonProvider>
+    </ChakraProvider>
   </React.StrictMode>
 );
 
