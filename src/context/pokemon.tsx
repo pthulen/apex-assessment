@@ -20,7 +20,9 @@ export const PokemonContext = createContext({
   selectedPokemon: {} as PokemonItem,
   setSelectedPokemon: (value: PokemonItem) => {},
   capturedPokemon: [] as CapturedPokemon[],
-  setCapturedPokemon: (value: CapturedPokemon[]) => {},
+  setCapturedPokemon: (
+    value: CapturedPokemon[] | ((prev: CapturedPokemon[]) => CapturedPokemon[])
+  ) => {},
 });
 
 export const PokemonProvider = ({
@@ -40,7 +42,11 @@ export const PokemonProvider = ({
     selectedPokemon,
     setSelectedPokemon: (value: PokemonItem) => setSelectedPokemon(value),
     capturedPokemon,
-    setCapturedPokemon: (value: CapturedPokemon[]) => setCapturedPokemon(value),
+    setCapturedPokemon: (
+      value:
+        | CapturedPokemon[]
+        | ((prev: CapturedPokemon[]) => CapturedPokemon[])
+    ) => setCapturedPokemon(value),
   };
 
   useEffect(() => {

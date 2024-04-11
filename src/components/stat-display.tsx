@@ -40,16 +40,16 @@ const StatDisplay = () => {
     console.log(pokemonData);
   }, [selectedPokemon]);
 
-  // const handleCapture = () => {
-  //     if (pokemonData) {
-  //         const capturedPokemon: CapturedPokemon = {
-  //             name: selectedPokemon.name,
-  //             id: pokemonData.id,
-  //             sprites: pokemonData.sprites,
-  //         };
-  //         setCapturedPokemon((prev) => [...prev, capturedPokemon]);
-  //     }
-  // };
+  const handleCapture = () => {
+    if (pokemonData) {
+      const capturedPokemon: CapturedPokemon = {
+        name: selectedPokemon.name,
+        id: pokemonData.id,
+        sprites: pokemonData.sprites,
+      };
+      setCapturedPokemon((prev) => [...prev, capturedPokemon]);
+    }
+  };
 
   if (!pokemonData) {
     return (
@@ -90,7 +90,12 @@ const StatDisplay = () => {
           </div>
         ))}
       </Flex>
-      <Button colorScheme="blackAlpha" width="100%" m={4}>
+      <Button
+        colorScheme="blackAlpha"
+        width="100%"
+        m={4}
+        onClick={handleCapture}
+      >
         Capture
       </Button>
     </div>

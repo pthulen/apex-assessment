@@ -1,6 +1,7 @@
 import { Flex, Center, Container, Box, Text } from "@chakra-ui/react";
 import SearchBar from "./components/searchbar";
 import StatDisplay from "./components/stat-display";
+import CapturedList from "./components/captured-list";
 
 import "./App.css";
 
@@ -30,7 +31,7 @@ function App() {
         border="8px"
         borderColor="#63171B"
       >
-        <Text>Captured</Text>
+        <CapturedList />
       </Box>
     </Flex>
   );
