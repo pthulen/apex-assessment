@@ -24,7 +24,7 @@ function App() {
         </Container>
       </Box>
       <Box
-        w="20%"
+        w="200px"
         h="500px"
         bg="#E53E3E"
         borderRadius="2xl"

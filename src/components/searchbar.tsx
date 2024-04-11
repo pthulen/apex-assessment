@@ -20,8 +20,12 @@ const SearchBar = () => {
 
   return (
     <Box bg="#E53E3E" w="90%" borderRadius="lg" p={4} color="white">
-      <Input placeholder="Search Pokemon" onChange={handleInputChange} />
-      <Button colorScheme="blackAlpha" onClick={handleSearch}>
+      <Input
+        placeholder="Search Pokemon"
+        _placeholder={{ color: "white" }}
+        onChange={handleInputChange}
+      />
+      <Button colorScheme="blackAlpha" mt={2} onClick={handleSearch}>
         Search
       </Button>
     </Box>

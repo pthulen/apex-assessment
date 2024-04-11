@@ -1,6 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import { CapturedPokemon, PokemonContext } from "../context/pokemon";
-import { Container, Flex, Text, Stack, Button, Center } from "@chakra-ui/react";
+import {
+  Container,
+  Flex,
+  Text,
+  Stack,
+  Button,
+  Center,
+  useToast,
+  Badge,
+} from "@chakra-ui/react";
 
 type PokemonData = {
   id: number;
@@ -22,7 +31,12 @@ type PokemonData = {
 };
 
 const StatDisplay = () => {
-  const { selectedPokemon, setCapturedPokemon } = useContext(PokemonContext);
+  const toast = useToast();
+  const {
+    selectedPokemon,
+    setCapturedPokemon,
+    capturedPokemon: capturedPokemonList,
+  } = useContext(PokemonContext);
   const [pokemonData, setPokemonData] = useState<PokemonData | null>(null);
 
   //if selectedPokemon is true, then fetch the data
@@ -47,6 +61,19 @@ const StatDisplay = () => {
         id: pokemonData.id,
         sprites: pokemonData.sprites,
       };
+      //check if the pokemon is already captured
+      const isCaptured = capturedPokemonList.some(
+        (pokemon) => pokemon.id === capturedPokemon.id
+      );
+      if (isCaptured) {
+        toast({
+          title: "Pokemon is already captured",
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+        });
+        return;
+      }
       setCapturedPokemon((prev) => [...prev, capturedPokemon]);
     }
   };
@@ -54,17 +81,18 @@ const StatDisplay = () => {
   if (!pokemonData) {
     return (
       <Center>
-        <Text fontSize="2xl">No Pokemon Selected</Text>
+        <Text fontSize="2xl">Please select a Pokemon</Text>
       </Center>
     );
   }
   return (
     <div>
       <Flex>
-        <Container>
+        <Container bg="#A0AEC0" borderRadius="2xl" mr={4} width={200}>
           <img
             src={pokemonData.sprites?.front_default}
             alt={selectedPokemon?.name}
+            width="175px"
           />
         </Container>
         <Stack>
@@ -72,29 +100,44 @@ const StatDisplay = () => {
             {selectedPokemon?.name}
           </Text>
           <Text fontSize="2xl" as="b">
-            # {pokemonData?.id}
+            #{pokemonData?.id}
           </Text>
           <Text fontSize="xl">Type</Text>
-          <Button colorScheme="blackAlpha">
-            {pokemonData?.types[0]?.type.name}
-          </Button>
+          <Badge>{pokemonData?.types[0]?.type.name}</Badge>
         </Stack>
       </Flex>
       <Flex>
-        {pokemonData.stats?.map((stat) => (
-          <div key={stat.stat.name}>
-            <Text textTransform="capitalize" mt={4}>
-              {stat.stat.name}
-            </Text>
-            <p>{stat.base_stat}</p>
-          </div>
-        ))}
+        <Stack m={4}>
+          <Text textTransform="capitalize" mt={4}>
+            HP
+          </Text>
+          <p>{pokemonData.stats[0].base_stat}</p>
+        </Stack>
+        <Stack m={4}>
+          <Text textTransform="capitalize" mt={4}>
+            Attack
+          </Text>
+          <p>{pokemonData.stats[1].base_stat}</p>
+        </Stack>
+        <Stack m={4}>
+          <Text textTransform="capitalize" mt={4}>
+            Defense
+          </Text>
+          <p>{pokemonData.stats[2].base_stat}</p>
+        </Stack>
+        <Stack m={4}>
+          <Text textTransform="capitalize" mt={4}>
+            Speed
+          </Text>
+          <p>{pokemonData.stats[5].base_stat}</p>
+        </Stack>
       </Flex>
       <Button
         colorScheme="blackAlpha"
         width="100%"
         m={4}
         onClick={handleCapture}
+        border="2px"
       >
         Capture
       </Button>

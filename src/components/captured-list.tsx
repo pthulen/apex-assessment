@@ -23,7 +23,9 @@ const CapturedList = () => {
           flexDirection="column"
           overflow="hidden"
         >
-          <Text textTransform="capitalize">{pokemon.name}</Text>
+          <Text textTransform="capitalize" fontSize="xl" fontWeight="bold">
+            {pokemon.name}
+          </Text>
           <img src={pokemon.sprites.front_default} alt={pokemon.name} />
         </Flex>
       ))}
