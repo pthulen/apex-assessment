@@ -3,8 +3,6 @@ import SearchBar from "./components/searchbar";
 import StatDisplay from "./components/stat-display";
 import CapturedList from "./components/captured-list";
 
-import "./App.css";
-
 function App() {
   return (
     <Flex justify="center" mt={4}>
