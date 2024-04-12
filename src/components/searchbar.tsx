@@ -43,20 +43,32 @@ const SearchBar = () => {
   };
 
   return (
-    <Box bg="#E53E3E" w="90%" borderRadius="lg" p={4} color="white">
+    <Box
+      bg="#E53E3E"
+      w="90%"
+      borderRadius="lg"
+      p={4}
+      color="white"
+      width="100%"
+    >
       <Input
         placeholder="Search Pokemon"
         _placeholder={{ color: "white" }}
         onChange={handleInputChange}
+        border="2px"
       />
       <Flex>
         <Button colorScheme="blackAlpha" mt={2} onClick={handleSearch}>
           Search
         </Button>
         <RadioGroup onChange={handleRadioChange} value={searchType} m={2}>
-          <Stack direction="row">
-            <Radio value="name">Name</Radio>
-            <Radio value="type">Id</Radio>
+          <Stack direction="row" marginTop="auto">
+            <Radio size="lg" value="name">
+              Name
+            </Radio>
+            <Radio size="lg" value="type">
+              Id
+            </Radio>
           </Stack>
         </RadioGroup>
       </Flex>

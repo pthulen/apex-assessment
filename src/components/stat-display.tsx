@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { CapturedPokemon, PokemonContext } from "../context/pokemon";
 import {
-  Container,
   Flex,
   Text,
   Stack,
@@ -9,6 +8,7 @@ import {
   Center,
   useToast,
   Badge,
+  Box,
 } from "@chakra-ui/react";
 
 type PokemonData = {
@@ -58,7 +58,6 @@ const StatDisplay = () => {
         id: pokemonData.id,
         sprites: pokemonData.sprites,
       };
-      //check if the pokemon is already captured
       const isCaptured = capturedPokemonList.some(
         (pokemon) => pokemon.id === capturedPokemon.id
       );
@@ -78,22 +77,24 @@ const StatDisplay = () => {
   if (!pokemonData) {
     return (
       <Center>
-        <Text fontSize="2xl">Please select a Pokemon</Text>
+        <Text fontSize="2xl" color="white">
+          Please select a Pokemon
+        </Text>
       </Center>
     );
   }
 
   return (
     <div>
-      <Flex>
-        <Container bg="#A0AEC0" borderRadius="2xl" mr={4} width={200} mx="auto">
+      <Flex justify="left" px={4}>
+        <Box bg="#A0AEC0" borderRadius="2xl">
           <img
             src={pokemonData.sprites?.front_default}
             alt={selectedPokemon?.name}
-            width="175px"
+            style={{ width: "175px", height: "175px" }}
           />
-        </Container>
-        <Stack>
+        </Box>
+        <Stack ml={8} color="white">
           <Text fontSize="2xl" as="b" textTransform="capitalize">
             {selectedPokemon?.name}
           </Text>
@@ -104,7 +105,7 @@ const StatDisplay = () => {
           <Badge>{pokemonData?.types[0]?.type.name}</Badge>
         </Stack>
       </Flex>
-      <Flex>
+      <Flex color="white">
         <Stack m={4}>
           <Text textTransform="capitalize" mt={4} as="b">
             HP
@@ -130,17 +131,16 @@ const StatDisplay = () => {
           <p>{pokemonData.stats[5].base_stat}</p>
         </Stack>
       </Flex>
-      <Container>
+      <Box>
         <Button
           colorScheme="blackAlpha"
           width="100%"
-          m={4}
           onClick={handleCapture}
           border="2px"
         >
           Capture
         </Button>
-      </Container>
+      </Box>
     </div>
   );
 };
