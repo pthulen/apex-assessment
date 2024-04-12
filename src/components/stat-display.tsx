@@ -39,19 +39,16 @@ const StatDisplay = () => {
   } = useContext(PokemonContext);
   const [pokemonData, setPokemonData] = useState<PokemonData | null>(null);
 
-  //if selectedPokemon is true, then fetch the data
   useEffect(() => {
     if (selectedPokemon) {
       fetch(selectedPokemon.url)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           setPokemonData(data);
         });
     } else {
       setPokemonData(null);
     }
-    console.log(pokemonData);
   }, [selectedPokemon]);
 
   const handleCapture = () => {
@@ -88,7 +85,7 @@ const StatDisplay = () => {
   return (
     <div>
       <Flex>
-        <Container bg="#A0AEC0" borderRadius="2xl" mr={4} width={200}>
+        <Container bg="#A0AEC0" borderRadius="2xl" mr={4} width={200} mx="auto">
           <img
             src={pokemonData.sprites?.front_default}
             alt={selectedPokemon?.name}
@@ -108,39 +105,41 @@ const StatDisplay = () => {
       </Flex>
       <Flex>
         <Stack m={4}>
-          <Text textTransform="capitalize" mt={4}>
+          <Text textTransform="capitalize" mt={4} as="b">
             HP
           </Text>
           <p>{pokemonData.stats[0].base_stat}</p>
         </Stack>
         <Stack m={4}>
-          <Text textTransform="capitalize" mt={4}>
+          <Text textTransform="capitalize" mt={4} as="b">
             Attack
           </Text>
           <p>{pokemonData.stats[1].base_stat}</p>
         </Stack>
         <Stack m={4}>
-          <Text textTransform="capitalize" mt={4}>
+          <Text textTransform="capitalize" mt={4} as="b">
             Defense
           </Text>
           <p>{pokemonData.stats[2].base_stat}</p>
         </Stack>
         <Stack m={4}>
-          <Text textTransform="capitalize" mt={4}>
+          <Text textTransform="capitalize" mt={4} as="b">
             Speed
           </Text>
           <p>{pokemonData.stats[5].base_stat}</p>
         </Stack>
       </Flex>
-      <Button
-        colorScheme="blackAlpha"
-        width="100%"
-        m={4}
-        onClick={handleCapture}
-        border="2px"
-      >
-        Capture
-      </Button>
+      <Container>
+        <Button
+          colorScheme="blackAlpha"
+          width="100%"
+          m={4}
+          onClick={handleCapture}
+          border="2px"
+        >
+          Capture
+        </Button>
+      </Container>
     </div>
   );
 };

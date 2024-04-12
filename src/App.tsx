@@ -1,4 +1,4 @@
-import { Flex, Center, Container, Box, Text } from "@chakra-ui/react";
+import { Flex, Box } from "@chakra-ui/react";
 import SearchBar from "./components/searchbar";
 import StatDisplay from "./components/stat-display";
 import CapturedList from "./components/captured-list";
@@ -15,13 +15,10 @@ function App() {
         border="8px"
         borderColor="#63171B"
         h="500px"
+        w="500px"
       >
-        <Center>
-          <SearchBar />
-        </Center>
-        <Container color="white">
-          <StatDisplay />
-        </Container>
+        <SearchBar />
+        <StatDisplay />
       </Box>
       <Box
         w="200px"

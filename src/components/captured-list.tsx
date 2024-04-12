@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { CapturedPokemon, PokemonContext } from "../context/pokemon";
-import { Container, Flex, Text, Button } from "@chakra-ui/react";
+import { PokemonContext } from "../context/pokemon";
+import { Container, Flex, Text } from "@chakra-ui/react";
 
 const CapturedList = () => {
   const { capturedPokemon, setCapturedPokemon } = useContext(PokemonContext);
