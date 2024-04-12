@@ -1,6 +1,5 @@
 import { createContext, useState, useEffect } from "react";
 
-// pokemonItem type
 export type PokemonItem = {
   name: string;
   url: string;
