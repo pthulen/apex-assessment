@@ -1,5 +1,5 @@
 import { SetStateAction, useContext, useState } from "react";
-import { PokemonContext } from "../context/pokemon";
+import { PokemonContext, PokemonItem } from "../context/pokemon";
 import {
   Box,
   Input,
@@ -22,7 +22,7 @@ const SearchBar = () => {
 
   const handleSearch = () => {
     if (searchType === "name") {
-      const filteredPokemon = pokemonList.filter((pokemon) =>
+      const filteredPokemon: PokemonItem[] = pokemonList.filter((pokemon) =>
         pokemon.name.includes(searchTerm)
       );
       setSelectedPokemon(filteredPokemon[0]);
