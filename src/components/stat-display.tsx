@@ -82,6 +82,7 @@ const StatDisplay = () => {
       </Center>
     );
   }
+
   return (
     <div>
       <Flex>
